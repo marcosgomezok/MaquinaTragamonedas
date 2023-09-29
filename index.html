@@ -11,12 +11,18 @@
 </head>
 
 <body onload="itamaraca()"style="margin-top: 100px">
-    <h1 id="sonido"><i id="icono-sonido" class="fas fa-volume-mute"></i></h1>
+  <h1 id="sonido"><i id="icono-sonido" class="fas fa-volume-mute"></i>  
+  </h1> 
+  
+  <div>
+  </div>
+  <div>
+  </div>
   <div  id="audio-casino">
   </div>
-  <div class="slot-machine">
-    <div id="contenedorslot" class="contenedorslot">
-      <div id="ganaste" hidden><img src="tm-img/ganaste.png"></div>
+  <div class="caja">
+      <div id="contenedorslot" class="contenedorslot">
+        <div id="ganaste" hidden><img src="tm-img/ganaste.png"></div>
       <div class="slot">
         <img src="./tm-img/6.png" alt="">
       </div>
@@ -27,11 +33,19 @@
         <img src="./tm-img/6.png" alt="">
       </div>
       <div class="lastslot"><img id="palanca" src="tm-img/up.png"></div>
-      <div class="tus-fichas"><h1 id="tus-fichas">Tus Fichas: <label id="tus-fichas-info"></label><label id="carga"></label></h1></div>
-      <div class="tus-ganadas"><h1 id="tus-ganadas">Fichas Ganadas: <label id="tus-ganadas-info"></label></h1></div>
-      <div class="tus-perdidas"><h1 id="tus-perdidas">Fichas Perdidas: <label id="tus-perdidas-info"></label></h1></div>
+      <div class="tus-fichas"><h2 id="tus-fichas">Tus Fichas: <label id="tus-fichas-info"></label><label id="carga"></label></h2></div>
+      <div class="tus-ganadas"><h2 id="tus-ganadas">Fichas Ganadas: <label id="tus-ganadas-info"></label></h2></div>
+      <div class="tus-perdidas"><h2 id="tus-perdidas">Fichas Perdidas: <label id="tus-perdidas-info"></label></h2></div>
+      <button type="button" class="options tragamonedas" onclick="vertragamonedas()">Tragamonedas</button>
+      <button type="button" class="options simulador" onclick="versimulador()">Simulador</button>
       <button class="button-green" id="reiniciar" onclick="reiniciar()">Reiniciar</button>
       <button type="button" class="button" id="simulacion">Simulacion</button>
+    </div>
+  </div>
+  <div class="caja">
+      <div id="contenedorsimu" class="contenedorsimu" hidden>
+      <button type="button" class="options tragamonedas" onclick="vertragamonedas()">Tragamonedas</button>
+      <button type="button" class="options simulador" onclick="versimulador()">Simulador</button>
     </div>
   </div>
   <script src="script.js"></script>

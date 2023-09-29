@@ -1,9 +1,9 @@
 body{
   background-color: rgb(184, 25, 25);
-background-image: url(./tm-img/fondo.jpg);
+background-image: url(./tm-img/fondo.png);
   background-size: 100% auto;
 }
-.slot-machine {
+.caja {
   display: block;
   position: absolute;
   z-index: 999;
@@ -24,7 +24,7 @@ background-image: url(./tm-img/fondo.jpg);
   width: 15%;
   background-color: goldenrod;
   padding: 8px;
-  bottom: 15%;
+  bottom: 18%;
 }
 .slot img{
   width: 100%;
@@ -77,8 +77,8 @@ background-image: url(./tm-img/fondo.jpg);
   position: absolute;
   color:goldenrod;
   /* transform: translate(-50%, -50%); */
-  top: 60%;
-  left: 5%;
+  top: 50%;
+  left: 10%;
 }
 #carga{
 
@@ -90,15 +90,15 @@ background-image: url(./tm-img/fondo.jpg);
   position: absolute;
   color:goldenrod;
   /* transform: translate(-50%, -50%); */
-  top: 70%;
-  left: 5%;
+  top: 60%;
+  left: 10%;
 }
 .tus-ganadas{
   position: absolute;
   color:goldenrod;
   /* transform: translate(-50%, -50%); */
-  top: 80%;
-  left: 5%;
+  top: 70%;
+  left: 10%;
 }
 
 .button {
@@ -111,7 +111,7 @@ background-image: url(./tm-img/fondo.jpg);
   text-align: center;
   display: inline-block;
   font-size: 18px;
-  top: 100%;
+  top: 98%;
   left: 40%;
   cursor: pointer;
 }
@@ -119,8 +119,8 @@ background-image: url(./tm-img/fondo.jpg);
   position: absolute;
   display: inline-block;
   padding: 15px 15px;
-  top: 75%;
-  left: 75%;
+  top: 70%;
+  left: 68%;
   background-color: rgba(35, 241, 35, 0.705);
   border-radius: 4px;
   border-color:transparent;
@@ -128,4 +128,38 @@ background-image: url(./tm-img/fondo.jpg);
   font-size: 18px;
 
   cursor: pointer;
+}
+
+.options{
+  background-color: goldenrod;
+  border-radius: 4px;
+  border-color:transparent;
+  color: white;
+  margin-left: 10px;
+  padding: 15px 15px;
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
+  cursor: pointer;
+  width: 200px;
+}
+.tragamonedas{
+ position: fixed;
+ left:-50%
+}
+.simulador{
+ position: fixed;
+ left:-50%;
+ top:15%;
+}
+
+.contenedorsimu{
+  position: absolute;
+  margin-top: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 500px;
+  width: 500px;
+  background-size: 100% auto;
 }

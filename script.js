@@ -13,11 +13,20 @@ const elementos = document.querySelectorAll(".slot img");
 const palanca = document.getElementById("palanca");
 var r=0
  var flagSonido = false;
- const sonido = document.querySelector("#sonido");
+ const sonido = document.querySelector("#icono-sonido");
  sonido.addEventListener("click", sonidoOffOn);
 
  const simulacion = document.getElementById("simulacion");
  simulacion.addEventListener("click", simulate);
+ 
+ function vertragamonedas() {
+    document.getElementById("contenedorslot").hidden = false
+    document.getElementById("contenedorsimu").hidden = true
+}
+ function versimulador() {
+    document.getElementById("contenedorslot").hidden = true
+    document.getElementById("contenedorsimu").hidden = false
+}
 
 palanca.addEventListener("click", giro);
 

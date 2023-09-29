@@ -207,7 +207,6 @@ function numeroRandom(){
     return array[r]
 }
 function obtenerValores() {
-    //var random = Math.random();
     var random = numeroRandom()
 
     fichasPerdidas++;

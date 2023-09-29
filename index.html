@@ -44,8 +44,114 @@
   </div>
   <div class="caja">
       <div id="contenedorsimu" class="contenedorsimu" hidden>
-      <button type="button" class="options tragamonedas" onclick="vertragamonedas()">Tragamonedas</button>
-      <button type="button" class="options simulador" onclick="versimulador()">Simulador</button>
+        <button type="button" class="options tragamonedas" onclick="vertragamonedas()">Tragamonedas</button>
+        <button type="button" class="options simulador" onclick="versimulador()">Simulador</button>
+        <div id="problema">
+          <h2>Situación Problemática:</h2>
+          <h3>Se presenta la siguiente maquina tragamonedas para su estudio de mercado y el costo de ficha de la maquina tragamonedas es de 1 USD.</h3>
+          <h3>En la siguiente tabla se muestra la combinación, su probabilidad de obtener el premio y el pago asociado, como así también su RTP.</h3>
+          <table>
+            <thead>
+              <tr>
+                  <th>Combinacion</th>
+                  <th>Pago</th>
+                  <th>Probabilidad P(X)</th>
+                  <th>F(X)</th>
+                  <th>RTP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3 Sietes</td>
+                <td>20</td>
+                <td>1%</td>
+                <td>1%</td>
+                <td>20%</td>
+              </tr>
+              <tr>
+                <td>3 Gemas</td>
+                <td>10</td>
+                <td>2%</td>
+                <td>3%</td>
+                <td>20%</td>
+              </tr>
+              <tr>
+                <td>3 Campanas</td>
+                <td>6</td>
+                <td>3%</td>
+                <td>6%</td>
+                <td>18%</td>
+              </tr>
+              <tr>
+                <td>3 Bar Triple</td>
+                <td>4</td>
+                <td>5%</td>
+                <td>11%</td>
+                <td>20%</td>
+              </tr>
+              <tr>
+                <td>3 Bar</td>
+                <td>2</td>
+                <td>8%</td>
+                <td>19%</td>
+                <td>16%</td>
+              </tr>
+              <tr>
+                <td>Otra</td>
+                <td>0</td>
+                <td>81%</td>
+                <td>100%</td>
+                <td>0%</td>
+              </tr>
+              <tr>
+                <th>TOTAL</th>
+                <th></th>
+                <th>100%</th>
+                <th></th>
+                <th>94%</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="simulador-normal" hidden>
+          <h2>Distribucion Normal:</h2>
+          <h3>“Cada día se registra que se ingresan <label id="media">3000</label> fichas con una desviación estándar de <label id="desviacion">300</label> 
+            ¿Cuántas fichas ingresaron en la maquina en <label id="tiempo1">365</label> dias? 
+            ¿Cuantas fichas fueron devueltas por la maquina en <label id="tiempo2">365</label> dias?
+            y ¿Cuántas fichas netas recaudo la maquina en <label id="tiempo3">365</label> dias?</h3>
+            <h3><label>Media: </label><input type="number" id="media-input" value="3000"></h3>
+            <h3><label>Desviación: </label><input type="number" id="desv-input" value="300"></h3>
+            <h3><label>Tiempo (Dias): </label><input type="number" id="tiempo-input" value="365"></h3>
+            <button class="button-simular-normal" id="simular-normal">Simular</button>
+            <div id="simulador-normal-response" hidden>
+              <h3>● Fichas Ingresadas: <label id="fichas-ingresadas"> </label></h3>
+              <h3>● Fichas Devueltas: <label id="fichas-devueltas"> </label></h3>
+              <h3>● Fichas Recaudadas: <label id="fichas-recaudadas"> </label></h3>
+            </div>
+        </div>
+        <div id="simulador-uniforme" hidden>
+          <h2>Distribucion Uniforme:</h2>
+          <h3>“El tiempo que un jugador está usando la maquina es entre <label id="a">2</label> y <label id="b">8</label> minutos” </h3><h3>¿Cuánto tiempo fue utilizada la maquina si en un día fue usada por <label id="jugadores">2000</label> jugadores?</h3>
+          <h3><label>A: </label><input type="number" id="a-input" value="2"></h3>
+          <h3><label>B: </label><input type="number" id="b-input" value="8"></h3>
+          <h3><label>Jugadores: </label><input type="number" id="jugadores-input" value="2000"></h3>
+          <button class="button-simular-normal" id="simular-uniforme">Simular</button>
+          <div id="simulador-uniforme-response" hidden>
+            <h3>● Uso de maquina por dia: <label id="uso-maquina"> </label> minutos</h3>
+          </div>
+        </div>
+        <div id="simulador-geometrica" hidden>
+          <h2>Distribucion Geometrica:</h2>
+          <h3>“Teniendo en cuenta que la probabilidad de ganar algo en la maquina se limita al <label id="p">19</label>% de las veces que se juega”</h3><h3>¿Cuántas fichas deben ser ingresadas hasta que una ficha me da éxito?</h3>
+          <h3><label>P(%): </label><input type="number" id="p-input" value="19"></h3><br><br><br><br>
+          <button class="button-simular-normal" id="simular-geometrica">Simular</button>
+          <div id="simulador-geometrica-response" hidden>
+            <h3>● Fichas necesarias antes de ganar: <label id="fichas-necesarias"> </label></h3>
+          </div>
+        </div>
+        <button class="button-red" id="normal">Normal</button>
+        <button class="button-red" id="uniforme">Uniforme</button>
+        <button class="button-red" id="geometrica">Geometrica</button>
     </div>
   </div>
   <script src="script.js"></script>

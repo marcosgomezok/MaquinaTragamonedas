@@ -10,14 +10,8 @@
   <title>Máquina Tragamonedas</title>
 </head>
 
-<body onload="itamaraca()"style="margin-top: 100px">
-  <h1 id="sonido"><i id="icono-sonido" class="fas fa-volume-mute"></i>  
-  </h1> 
-  
-  <div>
-  </div>
-  <div>
-  </div>
+<body style="margin-top: 100px">
+  <h1 id="sonido"><i id="icono-sonido" class="fas fa-volume-mute"></i></h1> 
   <div  id="audio-casino">
   </div>
   <div class="caja">
@@ -38,6 +32,7 @@
       <div class="tus-perdidas"><h2 id="tus-perdidas">Fichas Perdidas: <label id="tus-perdidas-info"></label></h2></div>
       <button type="button" class="options tragamonedas" onclick="vertragamonedas()">Tragamonedas</button>
       <button type="button" class="options simulador" onclick="versimulador()">Simulador</button>
+      <button type="button" class="options generador" onclick="vergenerador()">Generador</button>
       <button class="button-green" id="reiniciar" onclick="reiniciar()">Reiniciar</button>
       <button type="button" class="button" id="simulacion">Simulacion</button>
     </div>
@@ -46,6 +41,7 @@
       <div id="contenedorsimu" class="contenedorsimu" hidden>
         <button type="button" class="options tragamonedas" onclick="vertragamonedas()">Tragamonedas</button>
         <button type="button" class="options simulador" onclick="versimulador()">Simulador</button>
+        <button type="button" class="options generador" onclick="vergenerador()">Generador</button>
         <div id="problema">
           <h2>Situación Problemática:</h2>
           <h3>Se presenta la siguiente maquina tragamonedas para su estudio de mercado y el costo de ficha de la maquina tragamonedas es de 1 USD.</h3>
@@ -149,9 +145,27 @@
             <h3>● Fichas necesarias antes de ganar: <label id="fichas-necesarias"> </label></h3>
           </div>
         </div>
-        <button class="button-red" id="normal">Normal</button>
-        <button class="button-red" id="uniforme">Uniforme</button>
-        <button class="button-red" id="geometrica">Geometrica</button>
+        <div id="buttons-distribution">
+          <button class="button-red" id="normal">Normal</button>
+          <button class="button-red" id="uniforme">Uniforme</button>
+          <button class="button-red" id="geometrica">Geometrica</button>
+        </div>
+        <div id="generador-contenedor" class="generador-contenedor" hidden>
+          <h2>Generador de números pseudoaleatorios: Itamaracá</h2>
+          <h3><label>n: </label><input type="number" id="n-input" value=""></h3>
+          <h3><label>Semilla 0: </label><input type="number" id="s0-input" value=""></h3>
+          <h3><label>Semilla 1: </label><input type="number" id="s1-input" value=""></h3>
+          <h3><label>Semilla 2: </label><input type="number" id="s2-input" value=""></h3>
+          <h3><label>Xrn: </label><input type="number" id="xrn" value=""></h3>
+          <button class="button-simular-normal" id="guardar-generador">Guardar</button>
+          <div id="generador-response">
+            <h3>● n: <label id="n"> </label></h3>
+            <h3>● Semilla 0: <label id="s0"> </label></h3>
+            <h3>● Semilla 1:  <label id="s1"> </label></h3>
+            <h3>● Semilla 2:  <label id="s2"> </label></h3>
+            <h3>● Xrn:  <label id="xrn-resp"> </label></h3>
+          </div>
+        </div>
     </div>
   </div>
   <script src="script.js"></script>

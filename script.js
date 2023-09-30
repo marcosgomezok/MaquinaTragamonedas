@@ -12,6 +12,7 @@ var duracionGiro = 300;
 const elementos = document.querySelectorAll(".slot img");
 const palanca = document.getElementById("palanca");
 var r=0
+var maxN = 20;
  var flagSonido = false;
  const sonido = document.querySelector("#icono-sonido");
  sonido.addEventListener("click", sonidoOffOn);
@@ -25,6 +26,31 @@ var r=0
  uniforme.addEventListener("click", veruniforme);
  const geometrica = document.getElementById("geometrica");
  geometrica.addEventListener("click", vergeometrica);
+ const guardarG = document.getElementById("guardar-generador");
+ guardarG.addEventListener("click", guardarGenerador);
+
+ var n=obtenerN()
+ var semilla0 = Math.random() * n
+ var semilla1 = Math.random() * n
+ var semilla2 = Math.random() * n
+ var xrn = 1.97
+ var array = []
+ itamaraca()
+
+ function guardarGenerador(){
+    n = Number(document.getElementById('n-input').value)
+    semilla0 = Number(document.getElementById('s0-input').value)
+    semilla1 = Number(document.getElementById('s1-input').value)
+    semilla2 =Number(document.getElementById('s2-input').value)
+    xrn = Number(document.getElementById('xrn').value)
+    array = []
+    itamaraca()
+    document.getElementById("n").innerHTML = n
+    document.getElementById("s0").innerHTML = semilla0
+    document.getElementById("s1").innerHTML = semilla1
+    document.getElementById("s2").innerHTML = semilla2
+    document.getElementById("xrn-resp").innerHTML = xrn
+ }
  
  function vernormal() {
     document.getElementById("problema").hidden = true
@@ -33,6 +59,48 @@ var r=0
     document.getElementById("simulador-normal").hidden = false
     document.getElementById("simulador-uniforme-response").hidden = true
     document.getElementById("simulador-geometrica-response").hidden = true
+}
+
+ function vergenerador() {
+
+    document.getElementById("problema").hidden = true
+    document.getElementById("simulador-normal").hidden = true
+    document.getElementById("simulador-geometrica").hidden = true
+    document.getElementById("simulador-uniforme").hidden = true
+    document.getElementById("contenedorslot").hidden = true
+    document.getElementById("contenedorsimu").hidden = false
+    document.getElementById("simulador-normal-response").hidden = true
+    document.getElementById("simulador-uniforme-response").hidden = true
+    document.getElementById("simulador-geometrica-response").hidden = true
+    document.getElementById("buttons-distribution").hidden = true
+    document.getElementById("generador-contenedor").hidden = false
+    document.getElementById("n").innerHTML = n
+    document.getElementById("s0").innerHTML = semilla0.toFixed(2)
+    document.getElementById("s1").innerHTML = semilla1.toFixed(2)
+    document.getElementById("s2").innerHTML = semilla2.toFixed(2)
+    document.getElementById("xrn-resp").innerHTML = xrn
+
+    document.getElementById('n-input').value = obtenerNrand()
+    document.getElementById('s0-input').value = (Math.random()*nrand).toFixed(2)
+    document.getElementById('s1-input').value = (Math.random()*nrand).toFixed(2)
+    document.getElementById('s2-input').value = (Math.random()*nrand).toFixed(2)
+    document.getElementById('xrn').value = 1.97
+
+    
+}
+
+
+function obtenerN(){
+    n=0
+    while(n==0){n = Math.floor(Math.random() * maxN)}
+    return n
+}
+
+var nrand=0
+function obtenerNrand(){
+    nrand=0
+    while(nrand==0){nrand = Math.floor(Math.random() * maxN)}
+    return nrand
 }
 
 const simularN = document.getElementById("simular-normal");
@@ -191,6 +259,8 @@ function distribuciongeometrica(p){
     document.getElementById("simulador-normal-response").hidden = true
     document.getElementById("simulador-uniforme-response").hidden = true
     document.getElementById("simulador-geometrica-response").hidden = true
+    document.getElementById("buttons-distribution").hidden = false
+    document.getElementById("generador-contenedor").hidden = true
 }
 
 palanca.addEventListener("click", giro);
@@ -331,16 +401,10 @@ function sonidoOffOn() {
 }
 
 //ITAMARACA
-var array = []
+
 function itamaraca(){
-    var n = 0
-    while(n==0){
-        n = Math.floor(Math.random() * 10)
-    }
-    var semilla0 = Math.random() * n
-    var semilla1 = Math.random() * n
-    var semilla2 = Math.random() * n
-    var xrn = 1.97
+
+    console.log("Itamaraca: N="+n+" S0="+semilla0+" S1="+semilla1+" S2="+semilla2)
     
     var anterior = Math.abs(semilla2 - semilla0)
     var frns = Math.abs(n-(anterior*xrn))

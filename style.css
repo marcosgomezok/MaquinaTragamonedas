@@ -153,6 +153,11 @@ background-image: url(./tm-img/fondo.png);
  left:-50%;
  top:15%;
 }
+.generador{
+ position: fixed;
+ left:-50%;
+ top:30%;
+}
 
 .contenedorsimu{
   position: absolute;
@@ -229,7 +234,7 @@ input{
   width: 20%;
 }
 
-#simulador-normal-response,#simulador-uniforme-response,#simulador-geometrica-response{
+#simulador-normal-response,#simulador-uniforme-response,#simulador-geometrica-response, #generador-response{
   text-align: left;
   margin-left: 10px;
 }

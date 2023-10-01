@@ -1,68 +1,102 @@
 var fichas = 20;
 var fichasPerdidas = 0;
 var fichasGanadas = 0;
+var maxSimulation = 10000;
+var duracionGiro = 300;
 const carga = document.getElementById("carga");
 const tusfichas = document.getElementById("tus-fichas-info");
 const tusganadas = document.getElementById("tus-ganadas-info");
 const tusperdidas = document.getElementById("tus-perdidas-info");
-tusfichas.innerHTML = fichas
-tusperdidas.innerHTML = fichasPerdidas
-tusganadas.innerHTML = fichasGanadas
-var duracionGiro = 300;
+reiniciar();
 const elementos = document.querySelectorAll(".slot img");
 const palanca = document.getElementById("palanca");
-var r=0
+var flagSonido = false;
+const sonido = document.querySelector("#icono-sonido");
+sonido.addEventListener("click", sonidoOffOn);
+const simulacion = document.getElementById("simulacion");
+simulacion.addEventListener("click", simulate);
+const normal = document.getElementById("normal");
+normal.addEventListener("click", vernormal);
+const uniforme = document.getElementById("uniforme");
+uniforme.addEventListener("click", veruniforme);
+const geometrica = document.getElementById("geometrica");
+geometrica.addEventListener("click", vergeometrica);
+const guardarG = document.getElementById("guardar-generador");
+guardarG.addEventListener("click", guardarGenerador);
+
+var r=0 //indice de u
 var maxN = 20;
- var flagSonido = false;
- const sonido = document.querySelector("#icono-sonido");
- sonido.addEventListener("click", sonidoOffOn);
+var n=obtenerN()
+var semilla0 = Math.random() * n
+var semilla1 = Math.random() * n
+var semilla2 = Math.random() * n
+var xrn = 1.97
+var array = []
+itamaraca()
 
- const simulacion = document.getElementById("simulacion");
- simulacion.addEventListener("click", simulate);
-
- const normal = document.getElementById("normal");
- normal.addEventListener("click", vernormal);
- const uniforme = document.getElementById("uniforme");
- uniforme.addEventListener("click", veruniforme);
- const geometrica = document.getElementById("geometrica");
- geometrica.addEventListener("click", vergeometrica);
- const guardarG = document.getElementById("guardar-generador");
- guardarG.addEventListener("click", guardarGenerador);
-
- var n=obtenerN()
- var semilla0 = Math.random() * n
- var semilla1 = Math.random() * n
- var semilla2 = Math.random() * n
- var xrn = 1.97
- var array = []
- itamaraca()
-
- function guardarGenerador(){
-    n = Number(document.getElementById('n-input').value)
-    semilla0 = Number(document.getElementById('s0-input').value)
-    semilla1 = Number(document.getElementById('s1-input').value)
-    semilla2 =Number(document.getElementById('s2-input').value)
-    xrn = Number(document.getElementById('xrn').value)
-    array = []
-    itamaraca()
-    document.getElementById("n").innerHTML = n
-    document.getElementById("s0").innerHTML = semilla0
-    document.getElementById("s1").innerHTML = semilla1
-    document.getElementById("s2").innerHTML = semilla2
-    document.getElementById("xrn-resp").innerHTML = xrn
- }
- 
- function vernormal() {
-    document.getElementById("problema").hidden = true
-    document.getElementById("simulador-uniforme").hidden = true
-    document.getElementById("simulador-geometrica").hidden = true
-    document.getElementById("simulador-normal").hidden = false
-    document.getElementById("simulador-uniforme-response").hidden = true
-    document.getElementById("simulador-geometrica-response").hidden = true
+function reiniciar(){
+    fichas = 20;
+    fichasPerdidas = 0;
+    fichasGanadas = 0;
+    carga.innerHTML = ""
+    tusfichas.innerHTML = fichas
+    tusperdidas.innerHTML = fichasPerdidas
+    tusganadas.innerHTML = fichasGanadas
 }
 
- function vergenerador() {
+//ITAMARACA
 
+function itamaraca(){
+
+    console.log("Itamaraca: N="+n+" S0="+semilla0.toFixed(2)+" S1="+semilla1.toFixed(2)+" S2="+semilla2.toFixed(2)+" Xrn="+xrn)
+    
+    var anterior = Math.abs(semilla2 - semilla0)
+    var frns = Math.abs(n-(anterior*xrn))
+    var ui =frns/n
+    array.push(ui)
+    var i=1
+    while(i<maxSimulation){
+        anterior = Math.abs(frns-semilla1)
+        frns = Math.abs(n-(anterior*xrn))
+        ui=frns/n
+        array.push(ui)
+        i++;
+        if(i<maxSimulation){
+            anterior = Math.abs(frns-semilla2)
+            frns = Math.abs(n-(anterior*xrn))
+            ui=frns/n
+            array.push(ui)
+            i++;
+            if(i<maxSimulation){
+                anterior = Math.abs(frns-semilla0)
+                frns = Math.abs(n-(anterior*xrn))
+                ui=frns/n
+                array.push(ui)
+                i++;
+            }
+        }
+    }
+}
+
+function vertragamonedas() {
+    document.getElementById("contenedorslot").hidden = false
+    document.getElementById("contenedorsimu").hidden = true
+}
+ function versimulador() {
+    document.getElementById("problema").hidden = false
+    document.getElementById("simulador-normal").hidden = true
+    document.getElementById("simulador-geometrica").hidden = true
+    document.getElementById("simulador-uniforme").hidden = true
+    document.getElementById("contenedorslot").hidden = true
+    document.getElementById("contenedorsimu").hidden = false
+    document.getElementById("simulador-normal-response").hidden = true
+    document.getElementById("simulador-uniforme-response").hidden = true
+    document.getElementById("simulador-geometrica-response").hidden = true
+    document.getElementById("buttons-distribution").hidden = false
+    document.getElementById("generador-contenedor").hidden = true
+}
+
+ function verGenerador() {
     document.getElementById("problema").hidden = true
     document.getElementById("simulador-normal").hidden = true
     document.getElementById("simulador-geometrica").hidden = true
@@ -79,16 +113,15 @@ var maxN = 20;
     document.getElementById("s1").innerHTML = semilla1.toFixed(2)
     document.getElementById("s2").innerHTML = semilla2.toFixed(2)
     document.getElementById("xrn-resp").innerHTML = xrn
+    document.getElementById("cant-resp").innerHTML = maxSimulation
 
+    document.getElementById('cant-input').value = maxSimulation
     document.getElementById('n-input').value = obtenerNrand()
     document.getElementById('s0-input').value = (Math.random()*nrand).toFixed(2)
     document.getElementById('s1-input').value = (Math.random()*nrand).toFixed(2)
     document.getElementById('s2-input').value = (Math.random()*nrand).toFixed(2)
-    document.getElementById('xrn').value = 1.97
-
-    
+    document.getElementById('xrn').value = xrn
 }
-
 
 function obtenerN(){
     n=0
@@ -101,6 +134,34 @@ function obtenerNrand(){
     nrand=0
     while(nrand==0){nrand = Math.floor(Math.random() * maxN)}
     return nrand
+}
+
+function guardarGenerador(){
+    maxSimulation = Number(document.getElementById('cant-input').value)
+    n = Number(document.getElementById('n-input').value)
+    semilla0 = Number(document.getElementById('s0-input').value)
+    semilla1 = Number(document.getElementById('s1-input').value)
+    semilla2 =Number(document.getElementById('s2-input').value)
+    xrn = Number(document.getElementById('xrn').value)
+    array = []
+    itamaraca()
+    document.getElementById("n").innerHTML = n
+    document.getElementById("s0").innerHTML = semilla0
+    document.getElementById("s1").innerHTML = semilla1
+    document.getElementById("s2").innerHTML = semilla2
+    document.getElementById("xrn-resp").innerHTML = xrn
+    document.getElementById("cant-resp").innerHTML = maxSimulation
+ }
+
+//FUNCIONES DE DISTRIBUCION// 
+
+ function vernormal() {
+    document.getElementById("problema").hidden = true
+    document.getElementById("simulador-uniforme").hidden = true
+    document.getElementById("simulador-geometrica").hidden = true
+    document.getElementById("simulador-normal").hidden = false
+    document.getElementById("simulador-uniforme-response").hidden = true
+    document.getElementById("simulador-geometrica-response").hidden = true
 }
 
 const simularN = document.getElementById("simular-normal");
@@ -161,9 +222,7 @@ function simularnormal() {
     document.getElementById("tiempo1").innerHTML = tiempo
     document.getElementById("tiempo2").innerHTML = tiempo
     document.getElementById("tiempo3").innerHTML = tiempo
-
 }
-
 
 function distribucionNormal(media,desviac){
     var sum=0;
@@ -173,7 +232,8 @@ function distribucionNormal(media,desviac){
     var x = desviac*(sum-6)+media
     return x;
 }
- function veruniforme() {
+
+function veruniforme() {
     document.getElementById("problema").hidden = true
     document.getElementById("simulador-normal").hidden = true
     document.getElementById("simulador-geometrica").hidden = true
@@ -245,23 +305,7 @@ function distribuciongeometrica(p){
     return x;
 }
 
- function vertragamonedas() {
-    document.getElementById("contenedorslot").hidden = false
-    document.getElementById("contenedorsimu").hidden = true
-}
- function versimulador() {
-    document.getElementById("problema").hidden = false
-    document.getElementById("simulador-normal").hidden = true
-    document.getElementById("simulador-geometrica").hidden = true
-    document.getElementById("simulador-uniforme").hidden = true
-    document.getElementById("contenedorslot").hidden = true
-    document.getElementById("contenedorsimu").hidden = false
-    document.getElementById("simulador-normal-response").hidden = true
-    document.getElementById("simulador-uniforme-response").hidden = true
-    document.getElementById("simulador-geometrica-response").hidden = true
-    document.getElementById("buttons-distribution").hidden = false
-    document.getElementById("generador-contenedor").hidden = true
-}
+//FUNCIONES DE DISTRIBUCION//
 
 palanca.addEventListener("click", giro);
 
@@ -273,7 +317,7 @@ function obtenerAleatorios() {
 
 function numeroRandom(){
     r++;
-    if(r==10000){r=0}
+    if(r==maxSimulation){r=0}
     return array[r]
 }
 function obtenerValores() {
@@ -364,14 +408,25 @@ function giro() {
         carga.innerHTML = " ¡Carga mas fichas!"
     }
 }
-function reiniciar(){
-fichas = 20;
-fichasPerdidas = 0;
-fichasGanadas = 0;
-carga.innerHTML = ""
-tusfichas.innerHTML = fichas
-tusperdidas.innerHTML = fichasPerdidas
-tusganadas.innerHTML = fichasGanadas
+
+function simulate(){
+    document.getElementById("simulacion").disabled = true
+    if(flagSonido == true){
+        sonidoOffOn()
+    }
+    fichas = maxSimulation;
+    fichasPerdidas = 0;
+    fichasGanadas = 0;
+    for(var s=0;s<maxSimulation;s++){
+        if(fichas!=0){
+            obtenerValores()
+            ganaONo()
+        }
+    }
+    document.getElementById("ganaste").hidden = true
+    array = []
+    itamaraca()
+    document.getElementById("simulacion").disabled = false
 }
 
 function ganaONo() {
@@ -400,57 +455,3 @@ function sonidoOffOn() {
         flagSonido = true;     }
 }
 
-//ITAMARACA
-
-function itamaraca(){
-
-    console.log("Itamaraca: N="+n+" S0="+semilla0+" S1="+semilla1+" S2="+semilla2)
-    
-    var anterior = Math.abs(semilla2 - semilla0)
-    var frns = Math.abs(n-(anterior*xrn))
-    var ui =frns/n
-    array.push(ui)
-    var i=1
-    while(i<10000){
-        anterior = Math.abs(frns-semilla1)
-        frns = Math.abs(n-(anterior*xrn))
-        ui=frns/n
-        array.push(ui)
-        i++;
-        if(i<10000){
-            anterior = Math.abs(frns-semilla2)
-            frns = Math.abs(n-(anterior*xrn))
-            ui=frns/n
-            array.push(ui)
-            i++;
-            if(i<10000){
-                anterior = Math.abs(frns-semilla0)
-                frns = Math.abs(n-(anterior*xrn))
-                ui=frns/n
-                array.push(ui)
-                i++;
-            }
-        }
-    }
-    
-}
-
-function simulate(){
-    document.getElementById("simulacion").disabled = true
-    if(flagSonido == true){
-        sonidoOffOn()
-    }
-    fichas = 10000;
-    fichasPerdidas = 0;
-    fichasGanadas = 0;
-    for(var s=0;s<10000;s++){
-        if(fichas!=0){
-            obtenerValores()
-            ganaONo()
-        }
-    }
-    document.getElementById("ganaste").hidden = true
-    array = []
-    itamaraca()
-    document.getElementById("simulacion").disabled = false
-}

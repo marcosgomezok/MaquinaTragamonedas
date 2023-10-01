@@ -32,7 +32,7 @@
       <div class="tus-perdidas"><h2 id="tus-perdidas">Fichas Perdidas: <label id="tus-perdidas-info"></label></h2></div>
       <button type="button" class="options tragamonedas" onclick="vertragamonedas()">Tragamonedas</button>
       <button type="button" class="options simulador" onclick="versimulador()">Simulador</button>
-      <button type="button" class="options generador" onclick="vergenerador()">Generador</button>
+      <button type="button" class="options generador" onclick="verGenerador()">Generador</button>
       <button class="button-green" id="reiniciar" onclick="reiniciar()">Reiniciar</button>
       <button type="button" class="button" id="simulacion">Simulacion</button>
     </div>
@@ -41,10 +41,10 @@
       <div id="contenedorsimu" class="contenedorsimu" hidden>
         <button type="button" class="options tragamonedas" onclick="vertragamonedas()">Tragamonedas</button>
         <button type="button" class="options simulador" onclick="versimulador()">Simulador</button>
-        <button type="button" class="options generador" onclick="vergenerador()">Generador</button>
+        <button type="button" class="options generador" onclick="verGenerador()">Generador</button>
         <div id="problema">
           <h2>Situación Problemática:</h2>
-          <h3>Se presenta la siguiente maquina tragamonedas para su estudio de mercado y el costo de ficha de la maquina tragamonedas es de 1 USD.</h3>
+          <h3>Se presenta la siguiente maquina tragamonedas para su estudio de mercado y el costo de un juego es igual a una ficha.</h3>
           <h3>En la siguiente tabla se muestra la combinación, su probabilidad de obtener el premio y el pago asociado, como así también su RTP.</h3>
           <table>
             <thead>
@@ -152,11 +152,16 @@
         </div>
         <div id="generador-contenedor" class="generador-contenedor" hidden>
           <h2>Generador de números pseudoaleatorios: Itamaracá</h2>
-          <h3><label>n: </label><input type="number" id="n-input" value=""></h3>
-          <h3><label>Semilla 0: </label><input type="number" id="s0-input" value=""></h3>
-          <h3><label>Semilla 1: </label><input type="number" id="s1-input" value=""></h3>
-          <h3><label>Semilla 2: </label><input type="number" id="s2-input" value=""></h3>
-          <h3><label>Xrn: </label><input type="number" id="xrn" value=""></h3>
+          <div class="cantidades">
+            <h3><label>Cant.: </label><input type="number" id="cant-input" value=""></h3>
+            <h3><label>n: </label><input type="number" id="n-input" value=""></h3>
+            <h3><label>Xrn: </label><input type="number" id="xrn" value=""></h3>
+          </div>
+          <div class="semillas">
+            <h3><label>Semilla 0: </label><input type="number" id="s0-input" value=""></h3>
+            <h3><label>Semilla 1: </label><input type="number" id="s1-input" value=""></h3>
+            <h3><label>Semilla 2: </label><input type="number" id="s2-input" value=""></h3>
+          </div>
           <button class="button-simular-normal" id="guardar-generador">Guardar</button>
           <div id="generador-response">
             <h3>● n: <label id="n"> </label></h3>
@@ -164,10 +169,13 @@
             <h3>● Semilla 1:  <label id="s1"> </label></h3>
             <h3>● Semilla 2:  <label id="s2"> </label></h3>
             <h3>● Xrn:  <label id="xrn-resp"> </label></h3>
+            <h3>● Cant.:  <label id="cant-resp"> </label></h3>
           </div>
         </div>
     </div>
   </div>
+  <footer>Gomez Marcos - Colla Stefano</footer>
+
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 body{
-  background-color: rgb(184, 25, 25);
-background-image: url(./tm-img/fondo.png);
+  background-color: rgb(184, 25, 25) ;
+  background-image: url(./tm-img/fondo.png) ;
   background-size: 100% auto;
+
 }
 .caja {
   display: block;
@@ -233,8 +234,38 @@ h3{
 input{
   width: 20%;
 }
+.semillas h3 input,.cantidades h3 input{
+  width: 40%;
+}
 
 #simulador-normal-response,#simulador-uniforme-response,#simulador-geometrica-response, #generador-response{
   text-align: left;
   margin-left: 10px;
+}
+
+.semillas{
+  text-align: right;
+  position: absolute;
+  top:20%;
+  left:35%;
+}
+.cantidades{
+  text-align: right;
+  position: absolute;
+  top:20%;
+  left:-5%;
+}
+
+#generador-response{
+  position: absolute;
+  top:50%;
+  left:5%;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 98%;
+  height: 2.5rem;
+  color: white;
 }

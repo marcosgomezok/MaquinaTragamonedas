@@ -396,14 +396,14 @@ var palancas = [];
 function preloadPalanca() {
     for (var i = 0; i < arguments.length; i++) {
         palancas[i] = new Image();
-        palancas[i].src = preload.arguments[i];
+        palancas[i].src = preloadPalanca.arguments[i];
     }
 }
 
 //-- usage --//
 preloadPalanca(
-    "tm-img/down.png",
-    "tm-img/up.png",
+    "./tm-img/down.png",
+    "./tm-img/up.png",
 )
 
 //PALANCIA HACIA ABAJO

@@ -392,14 +392,28 @@ function obtenerValores() {
     }
 }
 
+var palancas = [];
+function preloadPalanca() {
+    for (var i = 0; i < arguments.length; i++) {
+        palancas[i] = new Image();
+        palancas[i].src = preload.arguments[i];
+    }
+}
+
+//-- usage --//
+preloadPalanca(
+    "tm-img/down.png",
+    "tm-img/up.png",
+)
+
 //PALANCIA HACIA ABAJO
 palanca.addEventListener("mousedown", function () {
-    palanca.src = "tm-img/down.png";
+    palanca.src = palancas[0].src;
   });
   
   //PALANCA HACIA ARRIBA
   palanca.addEventListener("mouseup", function () {
-    palanca.src = "tm-img/up.png";
+    palanca.src = palancas[1].src;
   });
 
 function giro() {

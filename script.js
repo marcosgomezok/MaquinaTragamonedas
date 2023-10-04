@@ -24,6 +24,8 @@ geometrica.addEventListener("click", vergeometrica);
 const guardarG = document.getElementById("guardar-generador");
 guardarG.addEventListener("click", guardarGenerador);
 
+
+
 var r=0 //indice de u
 var maxN = 20;
 var n=obtenerN()
@@ -320,37 +322,59 @@ function numeroRandom(){
     if(r==maxSimulation){r=0}
     return array[r]
 }
+
+var images = [];
+function preload() {
+    for (var i = 0; i < arguments.length; i++) {
+        images[i] = new Image();
+        images[i].src = preload.arguments[i];
+    }
+}
+
+//-- usage --//
+preload(
+    "./tm-img/0.png",
+    "./tm-img/1.png",
+    "./tm-img/2.png",
+    "./tm-img/3.png",
+    "./tm-img/4.png",
+    "./tm-img/5.png",
+    "./tm-img/6.png",
+    "./tm-img/7.png",
+    "./tm-img/8.png",
+    "./tm-img/9.png",
+)
 function obtenerValores() {
     var random = numeroRandom()
 
     fichasPerdidas++;
     fichas--;
     if(random<=0.01){
-        var rutaImagen = [`./tm-img/6.png`,`./tm-img/6.png`,`./tm-img/6.png`];
+        var rutaImagen = [images[6].src,images[6].src,images[6].src];
         fichas+=20;
         fichasGanadas+=20;
         return rutaImagen;
     }
     if(random<=0.03){
-        var rutaImagen = [`./tm-img/2.png`,`./tm-img/2.png`,`./tm-img/2.png`];
+        var rutaImagen = [images[2].src,images[2].src,images[2].src];
         fichas+=10;
         fichasGanadas+=10;
         return rutaImagen;
     }
     if(random<=0.06){
-        var rutaImagen = [`./tm-img/5.png`,`./tm-img/5.png`,`./tm-img/5.png`];
+        var rutaImagen = [images[5].src,images[5].src,images[5].src];
         fichas+=6;
         fichasGanadas+=6;
         return rutaImagen;
     }
     if(random<=0.11){
-        var rutaImagen = [`./tm-img/4.png`,`./tm-img/4.png`,`./tm-img/4.png`];
+        var rutaImagen = [images[4].src,images[4].src,images[4].src];
         fichas+=4;
         fichasGanadas+=4;
         return rutaImagen;
     }
     if(random<=0.19){
-        var rutaImagen = [`./tm-img/1.png`,`./tm-img/1.png`,`./tm-img/1.png`];
+        var rutaImagen = [images[1].src,images[1].src,images[1].src];
         fichas+=2;
         fichasGanadas+=2;
         return rutaImagen;
@@ -360,7 +384,10 @@ function obtenerValores() {
         while(rutas[0]==rutas[1]&&rutas[2]==rutas[1]){
         rutas = [Math.floor(Math.random() * 10),Math.floor(Math.random() * 10),Math.floor(Math.random() * 10)]
         }
-        var rutaImagen = [`./tm-img/${rutas[0]}.png`,`./tm-img/${rutas[1]}.png`,`./tm-img/${rutas[2]}.png`];
+        var r0=rutas[0]
+        var r1=rutas[1]
+        var r2=rutas[2]
+        var rutaImagen = [images[r0].src,images[r1].src,images[r2].src]
         return rutaImagen;
     }
 }
@@ -455,3 +482,4 @@ function sonidoOffOn() {
         flagSonido = true;     }
 }
 
+array.map((el,i)=> {if (i < 50){console.log(el)}})

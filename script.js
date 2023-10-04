@@ -497,7 +497,3 @@ function sonidoOffOn() {
         s.setAttribute("class", "fas fa-volume-up");
         flagSonido = true;     }
 }
-
-for(var i=0;i<10;i++){
-    console.log(array[i])
-}

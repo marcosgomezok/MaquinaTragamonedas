@@ -139,6 +139,7 @@ function obtenerNrand(){
 }
 
 function guardarGenerador(){
+    r=0;
     maxSimulation = Number(document.getElementById('cant-input').value)
     n = Number(document.getElementById('n-input').value)
     semilla0 = Number(document.getElementById('s0-input').value)
@@ -320,8 +321,8 @@ function obtenerAleatorios() {
 
 function numeroRandom(){
     r++;
-    if(r==maxSimulation){r=0}
-    return array[r]
+    if(r>maxSimulation){r=1}
+    return array[r-1]
 }
 
 var images = [];

@@ -313,7 +313,8 @@ palanca.addEventListener("click", giro);
 
 function obtenerAleatorios() {
     var numeroAleatorio = Math.floor(Math.random() * 10);
-    var rutaImagen = `./tm-img/${numeroAleatorio}.png`;
+    
+    var rutaImagen = images[numeroAleatorio].src;
     return rutaImagen;
 }
 

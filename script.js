@@ -497,4 +497,6 @@ function sonidoOffOn() {
         flagSonido = true;     }
 }
 
-array.map((el,i)=> {if (i < 50){console.log(el)}})
+for(var i=0;i<10;i++){
+    console.log(array[i])
+}
